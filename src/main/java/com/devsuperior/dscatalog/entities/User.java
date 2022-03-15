@@ -19,7 +19,11 @@ public class User implements Serializable {
     private String email;
     private String password;
 
-    private Set<Role> role = new HashSet<>();
+    @ManyToMany
+    @JoinTable(name = "tb_user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private final Set<Role> role = new HashSet<>();
 
     public User() {
     }
